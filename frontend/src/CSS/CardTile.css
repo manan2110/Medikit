@@ -1,0 +1,64 @@
+:root {
+	--pri-clr: #7fffd4;
+	--sec-clr: #e0ffff;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.card-container {
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+	margin: 1em;
+	padding: 2em;
+	width: 80%;
+	display: grid;
+	place-items: center;
+	grid-template-columns: 1fr 2fr 2fr 2fr;
+	gap: 1em;
+	text-align: center;
+	background-color: white;
+}
+
+.pharmacy-details {
+	font-size: medium;
+	font-family: "Lora";
+}
+
+.pharmacy-details-distance {
+	font-size: large;
+}
+
+.pharmacy-name {
+	font-size: x-large;
+	font-family: "Lora";
+	transition: all 250ms;
+	position: relative;
+}
+
+.pharmacy-name:after {
+	content: "";
+	display: block;
+	height: 0.1em;
+	left: 0;
+	position: absolute;
+	background: var(--pri-clr);
+	transition: width 0.3s ease 0s, left 0.3s ease 0s;
+	width: 0;
+}
+
+.pharmacy-name:hover:after {
+	width: 100%;
+}
+
+.pharmacy-link {
+	text-decoration: none;
+	color: black;
+}
+
+@media only screen and (max-width: 768px) {
+	.card-container {
+		display: flex;
+		flex-direction: column;
+	}
+}

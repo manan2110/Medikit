@@ -1,0 +1,48 @@
+:root {
+	--pri-clr: #7fffd4;
+	--sec-clr: #e0ffff;
+}
+
+.cartitem {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 1em;
+	padding: 1em;
+	border-radius: 0.25em;
+	place-items: center;
+	margin: 1em;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+	background-color: white;
+}
+
+.cart__image {
+	object-fit: cover;
+}
+
+.cartItem__name {
+	font-family: "Lora";
+	font-size: large;
+	color: #171717;
+}
+
+.cartitem__price {
+	font-family: "Lora";
+	font-size: large;
+}
+
+.cartitem__quantity {
+	font-family: "Lora";
+	font-size: large;
+}
+
+.cartItem__select {
+	padding: 0.5em;
+	font-size: medium;
+}
+
+@media only screen and (max-width: 768px) {
+	.cartitem {
+		display: flex;
+		flex-direction: column;
+	}
+}

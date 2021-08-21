@@ -1,0 +1,26 @@
+:root {
+	--pri-clr: #7fffd4;
+	--sec-clr: #e0ffff;
+}
+
+.home-container {
+	width: 100%;
+	padding: 8em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--sec-clr);
+}
+
+.login-message {
+	padding-top: 200px;
+	font-family: "Bona Nova";
+	font-size: 35px;
+	font-weight: 700;
+}
+
+@media only screen and (max-width: 768px) {
+	.home-container {
+		padding: 4em;
+	}
+}
