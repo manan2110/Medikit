@@ -1,25 +1,16 @@
-from django.db import models
-from django.contrib.auth.models import User
+import uuid
+from cassandra.cqlengine import columns
+from django_cassandra_engine.models import DjangoCassandraModel
+from cassandra.cqlengine import models
 
 # Create your models here.
 
 
-class Item(models.Model):
-    image_url = models.URLField()
-    name = models.CharField(max_length=255)
-    amount = models.IntegerField()
-    price = models.FloatField()
-    retail_price = models.FloatField()
-
-
 class Pharmacy(models.Model):
-    name = models.CharField(max_length=255)
-    image_url = models.URLField()
-    owner = models.ForeignKey(User, blank=True, on_delete=models.SET_NULL, null=True)
-    items = models.ManyToManyField(Item, blank=True)
-    address = models.TextField()
+    id = columns.Text(primary_key=True)
+    pharmacy_json = columns.Map(key_type=columns.Text, value_type=columns.Text)
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cart_json = models.JSONField()
+    username = columns.Text(primary_key=True)
+    cart_json = columns.Map(key_type=columns.Text, value_type=columns.Text)

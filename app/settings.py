@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "django_cassandra_engine",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,22 +43,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "api",
-    "rest_framework",
-    "background_task",
-    "corsheaders",
-    "rest_framework.authtoken",
-    "rest_auth",
     "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "rest_auth.registration",
-    "allauth.socialaccount",
 ]
 
 SITE_ID = 1
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -93,8 +84,18 @@ ASGI_APPLICATION = "app.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django_cassandra_engine",
+        "NAME": "final",
+        "TEST_NAME": "test-database",
+        "USER": "token",
+        "PASSWORD": env.str("token"),
+        "OPTIONS": {
+            "connection": {
+                "cloud": {
+                    "secure_connect_bundle": "app\secure-connect-test-database.zip"
+                },
+            }
+        },
     }
 }
 
@@ -145,13 +146,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-
-# for rest_auth registration
-ACCOUNT_EMAIL_VERIFICATION = "none"
-
-ACCOUNT_AUTHENTICATION_METHOD = "username"
-
-ACCOUNT_EMAIL_REQUIRED = False

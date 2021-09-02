@@ -77,96 +77,34 @@ async def index(request: HttpRequest):
 # cart related views
 
 
-async def cart_post(request: HttpRequest, cart: dict, _cart: Cart = None):
-    """POST method for cart endpoint"""
-    data = await get_request_data(request, "POST", id=int, amount=int)
-    if "Bad Request" in data:
-        return JsonResponse(
-            data,
-            status=400,
-        )
-    # check if item exists
-    item_pk = data["id"]
-    items = Item.objects.filter(pk=item_pk)
-    if not await sync_to_async(items.exists)():
-        return JsonResponse(
-            {"Not Found": f"item with id {item_pk} not found"},
-            status=404,
-        )
-    # check if amount is valid
-    item_amount = data["amount"]
-    item = await sync_to_async(items.first)()
-    if item.amount < item_amount or item_amount < 0:
-        return JsonResponse(
-            {"Invalid range": f"{item.name} only {item.amount} available"},
-            status=416,
-        )
-    # update cart
-    item_in_cart = False
-    for i, cart_item in enumerate(cart["items"]):
-        if cart_item["id"] == item_pk:
-            cart["total_amount"] += item_amount - cart_item["amount"]
-            cart["total_price"] += (item_amount - cart_item["amount"]) * item.price
-            cart["items"][i]["amount"] = item_amount
-            if item_amount == 0:
-                cart["items"].pop(i)
-            item_in_cart = True
-            break
-    if not item_in_cart:
-        cart["total_amount"] += item_amount
-        cart["total_price"] += item_amount * item.price
-        cart["items"].append(
-            {
-                "id": item_pk,
-                "name": item.name,
-                "amount": item_amount,
-                "price": item.price,
-                "max_amount": item.amount,
-                "image_url": item.image_url,
-            }
-        )
-    if _cart is None:
-        # user not authenticated
-        request.session["cart"] = cart
-    else:
-        # user authenticated
-        _cart.cart_json = cart
-        await sync_to_async(_cart.save)()
-    return JsonResponse({"cart": cart})
-
-
 async def cart(request: HttpRequest):
-    print(request.POST.dict())
-    try:
-        # initialize cart in session
-        if await sync_to_async(request.session.get)("cart") is None:
-            cart = {
-                "items": [],
-                "total_amount": 0,
-                "total_price": 0,
-            }
-            request.session["cart"] = cart
-        else:
-            cart = request.session["cart"]
-        # initialize cart in db if user authenticated
-        _cart = None
-        if await sync_to_async(is_authenticated)(request):
-            carts = await sync_to_async(Cart.objects.filter)(user=request.user)
-            if await sync_to_async(carts.exists)():
-                # already cart present in db
-                _cart = await sync_to_async(carts.first)()
-                cart = _cart.cart_json
-            else:
-                # no cart in db
-                _cart = Cart(user=request.user, cart_json=cart)
-                await sync_to_async(_cart.save)()
-                cart = _cart.cart_json
-        if request.method == "GET":
-            return JsonResponse({"cart": cart})
-        if request.method == "POST":
-            return await cart_post(request, cart, _cart)
-    except Exception as _:
-        print_exc()
+
+    if request.method == "GET":
+        cart_object = await sync_to_async(Cart.objects.filter)(
+            username=request.GET["username"]
+        )
+        print(cart_object)
+        print(dir(cart_object))
+        if await sync_to_async(cart_object.if_exists)():
+            cart_object = await sync_to_async(cart_object.first)()
+            return JsonResponse({"cart": cart_object.cart_json}, status=200)
+        return JsonResponse(
+            {"Not Found": f"Cart of {request.GET['username']} not found"}, status=404
+        )
+
+    if request.method == "POST":
+        cart_object = await sync_to_async(Cart.objects.filter)(
+            username=request.POST["username"]
+        )
+        if await sync_to_async(cart_object.if_exists)():
+            cart_object = await sync_to_async(cart_object.first)()
+            cart_object.cart_json = request.POST["cart"]
+            await sync_to_async(cart_object.save)()
+            return JsonResponse({"cart": cart_object.cart_json}, status=200)
+
+        return JsonResponse(
+            {"Not Found": f"Cart of {request.POST['username']} not found"}, status=404
+        )
     return default_json_response
 
 
@@ -213,8 +151,15 @@ async def pharmacy_get_nearby(request: HttpRequest):
             res = await get_nearby_pharmacies(session, location)
         nearby_pharmacies = res["suggestedLocations"]
         # fill response with images and items
-        items = await sync_to_async(Item.objects.all)()
+        # TODO: convert list of items to json
+        items = []
+        json_data = open("frontend/src/res.json")
+        data1 = json.load(json_data)
+        for i in data1["nearby_pharmacies"]:
+            items.extend(i["items"])
+
         items_json = await json_serializer(items)
+        print(items_json)
         random.shuffle(items_json)
         item_start_idx = 0
         item_skip = len(items_json) // len(nearby_pharmacies)
@@ -230,7 +175,6 @@ async def pharmacy_get_nearby(request: HttpRequest):
 
 async def pharmacy_get(request: HttpRequest, pharmacy_eloc: str):
     nearby_pharmacies = await sync_to_async(request.session.get)("nearby_pharmacies")
-    print(await sync_to_async(request.session.items)())
     if nearby_pharmacies is None:
         return JsonResponse(
             {"Precondition Required": "call with location first"},
@@ -250,21 +194,8 @@ async def pharmacy(request: HttpRequest, pharmacy_eloc: str = None):
         if request.method == "GET":
             if pharmacy_eloc is not None:
                 return await pharmacy_get(request, pharmacy_eloc)
+            return default_json_response
             return await pharmacy_get_nearby(request)
-    except Exception as _:
-        print_exc()
-    return default_json_response
-
-
-# item based views
-
-
-async def item(request: HttpRequest, item_id: int = None):
-    try:
-        if request.method == "GET":
-            items = await sync_to_async(Item.objects.all)()
-            items_json = await json_serializer(items)
-            return JsonResponse({"items": items_json}, status=200)
     except Exception as _:
         print_exc()
     return default_json_response
