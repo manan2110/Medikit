@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Avatar, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { Link } from "react-router-dom";
@@ -9,8 +9,6 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 		localStorage.getItem("token") && localStorage.removeItem("token");
 		setUser(null);
 	};
-
-	useEffect(() => {}, [items, user]);
 
 	const onSearchBarChange = (_event, item) => {
 		if (item == null) return;

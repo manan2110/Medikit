@@ -7,20 +7,19 @@ export default function Login({ user, setUser }) {
 	const history = useHistory();
 
 	useEffect(() => {
-		localStorage.removeItem("token");
 		var config = {
 			containerID: "sawo-container",
 			identifierType: "email",
 			apiKey: "1becc7cb-07ea-4477-8d7f-2c4f4581febb",
 			onSuccess: (payload) => {
-				localStorage.setItem("token", payload.verification_token);
-				setUser(payload.user_id);
+				sessionStorage.setItem("token", payload.verification_token);
+				setUser(payload.identifier);
 				history.push("/");
 			},
 		};
 		let sawo = new Sawo(config);
 		sawo.showForm();
-	}, [history, setUser]);
+	}, []);
 
 	return (
 		<div className="containerStyle">
