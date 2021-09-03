@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
-    "django.contrib.sessions",
+    # "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "api",
     "django.contrib.sites",
+    "django_cassandra_engine.sessions",
 ]
+
+SESSION_ENGINE = "django_cassandra_engine.sessions.backends.db"
 
 SITE_ID = 1
 

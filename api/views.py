@@ -58,7 +58,7 @@ def is_authenticated(request: HttpRequest) -> bool:
     return request.user.is_authenticated
 
 
-async def json_serializer(queryset: QuerySet) -> "list[dict]":
+async def json_serializer(queryset: QuerySet) -> list[dict]:
     qjsons_str = await sync_to_async(serialize)("json", queryset)
     qjsons = json.loads(qjsons_str)
     for qjson in qjsons:
@@ -83,8 +83,6 @@ async def cart(request: HttpRequest):
         cart_object = await sync_to_async(Cart.objects.filter)(
             username=request.GET["username"]
         )
-        print(cart_object)
-        print(dir(cart_object))
         if await sync_to_async(cart_object.if_exists)():
             cart_object = await sync_to_async(cart_object.first)()
             return JsonResponse({"cart": cart_object.cart_json}, status=200)
@@ -139,6 +137,7 @@ async def pharmacy_get_nearby(request: HttpRequest):
     location = data["latitude"] + "," + data["longitude"]
     if nearby_pharmacies is not None:
         # was present in session
+        print("from session")
         return JsonResponse(
             {"nearby_pharmacies": nearby_pharmacies},
             status=200,
@@ -157,8 +156,7 @@ async def pharmacy_get_nearby(request: HttpRequest):
         data1 = json.load(json_data)
         for i in data1["nearby_pharmacies"]:
             items.extend(i["items"])
-
-        items_json = await json_serializer(items)
+        items_json = items
         print(items_json)
         random.shuffle(items_json)
         item_start_idx = 0
@@ -194,7 +192,6 @@ async def pharmacy(request: HttpRequest, pharmacy_eloc: str = None):
         if request.method == "GET":
             if pharmacy_eloc is not None:
                 return await pharmacy_get(request, pharmacy_eloc)
-            return default_json_response
             return await pharmacy_get_nearby(request)
     except Exception as _:
         print_exc()
