@@ -21,13 +21,13 @@
 
 .cartItem__name {
 	font-family: "Lora";
-	font-size: large;
+	font-size: medium;
 	color: #171717;
 }
 
 .cartitem__price {
 	font-family: "Lora";
-	font-size: large;
+	font-size: medium;
 }
 
 .cartitem__quantity {
