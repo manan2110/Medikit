@@ -6,8 +6,7 @@ import Login from "./Pages/Login";
 import Cart from "./Pages/Cart";
 import Pharmacy from "./Pages/Pharmacy";
 import VideoCall from "./Pages/VideoCall";
-import Owner from "./Pages/Owner"
-import res from "./res.json";
+import Owner from "./Pages/Owner";
 
 export default function App() {
 	const [pharmacies, setPharmacies] = useState([]);
@@ -16,25 +15,26 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
-		// navigator.geolocation.getCurrentPosition((position) => {
-		// 	fetch(
-		// 		`/api/pharmacy?latitude=${encodeURIComponent(
-		// 			position.coords.latitude
-		// 		)}&longitude=${encodeURIComponent(position.coords.longitude)}`,
-		// 		{
-		// 			credentials: "same-origin",
-		// 		}
-		// 	)
-		// 		.then((res) => res.json())
-		// 		.then((res) => setPharmacies(res.nearby_pharmacies));
-		// }, [pharmacies]);
-		setPharmacies(res.nearby_pharmacies);
-		for (let pharmacy of pharmacies) {
-			for (let item of pharmacy.items) {
-				items[item.pk] = item;
-			}
-		}
-		setItems(items);
+		navigator.geolocation.getCurrentPosition((position) => {
+			fetch(
+				`/api/pharmacy?latitude=${encodeURIComponent(
+					position.coords.latitude
+				)}&longitude=${encodeURIComponent(position.coords.longitude)}`,
+				{
+					credentials: "same-origin",
+				}
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					setPharmacies(res.nearby_pharmacies);
+					for (let pharmacy of res.nearby_pharmacies) {
+						for (let item of pharmacy.items) {
+							items[item.pk] = item;
+						}
+					}
+					setItems(items);
+				});
+		});
 	}, [items, pharmacies]);
 
 	return (

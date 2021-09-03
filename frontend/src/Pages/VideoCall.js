@@ -135,7 +135,7 @@ function Video() {
                                 End Call
                             </Button>
                         ) : (
-                            <IconButton color="primary" aria-label="call" onClick={() => callUser(idToCall)}>
+                            <IconButton color="white" aria-label="call" onClick={() => callUser(idToCall)}>
                                 <PhoneIcon fontSize="large" />
                             </IconButton>
                         )}

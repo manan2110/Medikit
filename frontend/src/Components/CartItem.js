@@ -3,7 +3,7 @@ import "../CSS/CartItem.css";
 
 export default function CartItem({ cart, item, setCart }) {
 	const handleOnChange = (e) => {
-		if (e.target.value === 0) {
+		if (e.target.value == 0) {
 			if (item.pk in cart) {
 				delete cart[item.pk];
 			}
