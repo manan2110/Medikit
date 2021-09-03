@@ -116,17 +116,17 @@ We learned from every challenged we faced.
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/belikeamitesh">
-            <img src="https://avatars.githubusercontent.com/u/56907437?v=4" width="100;" alt="belikeamitesh"/>
-            <br />
-            <sub><b>Belikeamitesh</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/Ayush6602">
             <img src="https://avatars.githubusercontent.com/u/54628493?v=4" width="100;" alt="Ayush6602"/>
             <br />
             <sub><b>Ayush Das</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/belikeamitesh">
+            <img src="https://avatars.githubusercontent.com/u/56907437?v=4" width="100;" alt="belikeamitesh"/>
+            <br />
+            <sub><b>Belikeamitesh</b></sub>
         </a>
     </td></tr>
 </table>
