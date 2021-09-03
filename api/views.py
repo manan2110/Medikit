@@ -199,3 +199,16 @@ async def pharmacy(request: HttpRequest, pharmacy_eloc: str = None):
     except Exception as _:
         print_exc()
     return default_json_response
+
+
+async def update(request: HttpRequest, pharmacy_eloc: str = None):
+    try:
+        if request.method == "GET":
+            if pharmacy_eloc is not None:
+                print(pharmacypharmacy_get(request, pharmacy_eloc))
+                return await pharmacy_get(request, pharmacy_eloc)
+            return default_json_response
+            return await pharmacy_get_nearby(request)
+    except Exception as _:
+        print_exc()
+    return default_json_response

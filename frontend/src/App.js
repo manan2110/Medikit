@@ -70,6 +70,7 @@ export default function App() {
 					<Route exact path={`/pharmacy/${pharmacy.eLoc}/owner`}>
 						<Owner
 							pharmacy={pharmacy}
+							setPharmacies={setPharmacies}
 							cart={cart}
 							setCart={setCart}
 						/>
