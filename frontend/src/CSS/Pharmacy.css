@@ -121,3 +121,18 @@
 		width: 100%;
 	}
 }
+
+.custBtn{
+	border:none;
+	padding:10px;
+	border-radius: 2px;
+	
+	cursor:pointer
+}
+
+.formInput{
+	width:80% !important;
+	border:1px solid grey;
+	border-radius:5px;
+	padding:10px ;
+}

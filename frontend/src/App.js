@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import Cart from "./Pages/Cart";
 import Pharmacy from "./Pages/Pharmacy";
 import VideoCall from "./Pages/VideoCall";
+import Owner from "./Pages/Owner"
 import res from "./res.json";
 
 export default function App() {
@@ -65,6 +66,15 @@ export default function App() {
 					<Home pharmacies={pharmacies} />
 				</Route>
 				<Route exact path="/video/" component={VideoCall} />
+				{pharmacies.map((pharmacy) => (
+					<Route exact path={`/pharmacy/${pharmacy.eLoc}/owner`}>
+						<Owner
+							pharmacy={pharmacy}
+							cart={cart}
+							setCart={setCart}
+						/>
+					</Route>
+				))}
 			</Router>
 		</div>
 	);
