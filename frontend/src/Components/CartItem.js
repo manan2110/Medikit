@@ -2,7 +2,7 @@ import React from "react";
 import "../CSS/CartItem.css";
 
 export default function CartItem({ cart, item, setCart }) {
-	const handleOnChange = (e) => {
+	const handleOnChange = async (e) => {
 		if (e.target.value == 0) {
 			if (item.pk in cart) {
 				delete cart[item.pk];

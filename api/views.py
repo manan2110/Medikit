@@ -86,23 +86,21 @@ async def cart(request: HttpRequest):
         if await sync_to_async(cart_object.if_exists)():
             cart_object = await sync_to_async(cart_object.first)()
             return JsonResponse({"cart": cart_object.cart_json}, status=200)
-        return JsonResponse(
-            {"Not Found": f"Cart of {request.GET['username']} not found"}, status=404
-        )
+        return JsonResponse({"cart": {}}, status=200)
 
     if request.method == "POST":
+        body = json.load(request)
         cart_object = await sync_to_async(Cart.objects.filter)(
-            username=request.POST["username"]
+            username=body["username"]
         )
         if await sync_to_async(cart_object.if_exists)():
             cart_object = await sync_to_async(cart_object.first)()
-            cart_object.cart_json = request.POST["cart"]
-            await sync_to_async(cart_object.save)()
-            return JsonResponse({"cart": cart_object.cart_json}, status=200)
+            cart_object.cart_json = body["cart"]
+        else:
+            cart_object = Cart(username=body["username"], cart=body["cart"])
+        await sync_to_async(cart_object.save)()
+        return JsonResponse({"cart": cart_object.cart_json}, status=200)
 
-        return JsonResponse(
-            {"Not Found": f"Cart of {request.POST['username']} not found"}, status=404
-        )
     return default_json_response
 
 

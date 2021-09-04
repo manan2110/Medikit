@@ -21,11 +21,13 @@ export default function App() {
 					position.coords.latitude
 				)}&longitude=${encodeURIComponent(position.coords.longitude)}`,
 				{
-					credentials: "same-origin",
+					credentials: "include",
+					mode: "same-origin",
 				}
 			)
 				.then((res) => res.json())
 				.then((res) => {
+					res.nearby_pharmacies = Array.from(res.nearby_pharmacies);
 					setPharmacies(res.nearby_pharmacies);
 					for (let pharmacy of res.nearby_pharmacies) {
 						for (let item of pharmacy.items) {
@@ -35,7 +37,7 @@ export default function App() {
 					setItems(items);
 				});
 		});
-	}, [items, pharmacies]);
+	}, []);
 
 	return (
 		<div className="app">
@@ -51,7 +53,12 @@ export default function App() {
 					<Login user={user} setUser={setUser} />
 				</Route>
 				<Route exact path="/cart">
-					<Cart items={items} cart={cart} setCart={setCart} />
+					<Cart
+						user={user}
+						items={items}
+						cart={cart}
+						setCart={setCart}
+					/>
 				</Route>
 				{pharmacies.map((pharmacy) => (
 					<Route exact path={`/pharmacy/${pharmacy.eLoc}`}>
