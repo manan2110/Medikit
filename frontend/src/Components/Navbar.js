@@ -3,7 +3,8 @@ import { Avatar, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 import "../CSS/Navbar.css";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faFirstAid} from '@fortawesome/free-solid-svg-icons'
 export default function Navbar({ items, cart, setCart, user, setUser }) {
 	const handleLogout = () => {
 		localStorage.getItem("token") && localStorage.removeItem("token");
@@ -23,7 +24,8 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 		<div className="navbar">
 			<input type="checkbox" id="nav-check"></input>
 			<Link to="/" className="home-link">
-				<div className="logo">MEDGUIDE</div>
+				<div className="logo">MEDIKIT</div>
+				<FontAwesomeIcon size='1x' color='white' icon={faFirstAid}></FontAwesomeIcon>
 			</Link>
 			<Autocomplete
 				className="searchbar"

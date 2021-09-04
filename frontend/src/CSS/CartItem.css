@@ -8,35 +8,44 @@
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 1em;
 	padding: 1em;
-	border-radius: 0.25em;
+	border-radius: 8px;
 	place-items: center;
 	margin: 1em;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+-webkit-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+-moz-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
 	background-color: white;
 }
 
 .cart__image {
 	object-fit: cover;
+	border-radius: 50%;
+	width:100px;
+	height:100px;
+	box-shadow: 4px 2px 12px -4px rgba(0,0,0,0.38);
+	-webkit-box-shadow: 4px 2px 12px -4px rgba(0,0,0,0.38);
+	-moz-box-shadow: 4px 2px 12px -4px rgba(0,0,0,0.38);;
 }
 
 .cartItem__name {
-	font-family: "Lora";
+	font-family: "Poppins";
 	font-size: medium;
 	color: #171717;
 }
 
 .cartitem__price {
-	font-family: "Lora";
+	font-family: "Poppins";
 	font-size: medium;
 }
 
 .cartitem__quantity {
-	font-family: "Lora";
+	font-family: "Poppins";
 	font-size: large;
 }
 
 .cartItem__select {
-	padding: 0.5em;
+	padding: 0.2em;
+	border-radius: 2px;
 	font-size: medium;
 }
 

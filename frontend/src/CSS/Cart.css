@@ -12,7 +12,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	background-color: var(--sec-clr);
+	background-color:#e6e6f7;
 }
 
 .cartscreen__left {
@@ -28,36 +28,49 @@
 	width: 30%;
 	align-items: center;
 	margin: 0.5em;
+	margin-top:20px;
 }
+.cardHeader{
+	background-color: orange;
+	padding:0px;
+    
+}
+.order{
+	background-color: #e6e6f7;
+	padding: 1em;
 
+}
 .cartscreen__info {
-	border-radius: 0.25em;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+	
+	box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+-webkit-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+-moz-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
 	width: 100%;
 	display: flex;
 	margin: 1em;
-	padding: 1em;
+	
 	flex-direction: column;
 	justify-content: space-around;
 	text-align: center;
 	font-size: large;
-	font-family: "Lora";
-	background-color: white;
+	font-family: "Poppins";
+	
 }
 
 .checkout {
 	border: none;
-	border-radius: 0.25em;
-	background-color: black;
+	border-radius: 50px;
+	background-color: rgb(73, 153, 63);
 	color: white;
-	font-family: "Bona Nova";
+	font-family: "Lato";
 	font-size: large;
 	padding: 1em;
 	cursor: pointer;
+	margin-top: 10px;
 }
 
 .checkout:hover {
-	color: var(--pri-clr);
+   background-color:rgb(90, 155, 82,0.8); ;
 }
 
 @media only screen and (max-width: 768px) {

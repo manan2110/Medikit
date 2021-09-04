@@ -1,6 +1,6 @@
 :root {
-	--pri-clr: #7fffd4;
-	--sec-clr: #e0ffff;
+	--pri-clr: #9f81fb4d;
+	--sec-clr: #a991f04d;
 }
 
 .home-container {
@@ -9,7 +9,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: var(--sec-clr);
+	background-color: #e6e6f7;
 }
 
 .login-message {

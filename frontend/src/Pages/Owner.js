@@ -58,7 +58,7 @@ export default function Owner({ pharmacy,setPharmacies, cart, setCart, }) {
 				{pharmacy &&
 					pharmacy.items.map((medItem) => (
 						<div >
-                            <div style={{'display':'flex','justifyContent':"space-around",'alignItems':'center'}}>
+                            <div>
                                 <CartItem
                                 cart={cart}
                                 item={medItem}
@@ -83,13 +83,16 @@ export default function Owner({ pharmacy,setPharmacies, cart, setCart, }) {
 					<span className="pharmacy-details-name">
 						{pharmacy && pharmacy.placeName}
 					</span>
+                    <div className='color-band'>
+						<p></p>
+					</div>
 					
 					<span className="pharmacy-details-medicine">
 						{pharmacy && pharmacy.placeAddress}
 					</span>
 				</div>
 				<div className="goto-cart">
-                   <button className='custBtn' type="button" onClick={handleOpen}>
+                   <button  style={{'color':'orange','backgroundColor':'#036','marginTop':'20px'}}className='custBtn' type="button" onClick={handleOpen}>
                        <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                      <span style={{marginLeft:'10px'}}>Add New Item</span>
                     </button>
@@ -124,7 +127,7 @@ export default function Owner({ pharmacy,setPharmacies, cart, setCart, }) {
                                             </div>
                                             
                                             <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
-                                                <button onClick={handleSubmit} style={{backgroundColor:'#1261A0',color:"white",marginRight:'10px'}} className='custBtn'>
+                                                <button onClick={handleSubmit} style={{backgroundColor:'#036',color:"white",marginRight:'10px'}} className='custBtn'>
                                                     Save Item
                                                 </button>
                                                 <button onClick={handleClose} className='custBtn' style={{backgroundColor:'#ff6963',color:"white"}} >

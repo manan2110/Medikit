@@ -15,7 +15,7 @@
 	padding: 1em;
 	z-index: 2;
 	color: white;
-	background-color: black;
+	background-color: #036;
 	align-items: center;
 }
 
@@ -24,11 +24,12 @@
 	display: flex;
 	width: 100%;
 	justify-content: center;
+	align-items: center;
 }
 
 .logo {
 	font-size: xx-large;
-	font-family: "El Messiri", sans-serif;
+	font-family: "Poppins", sans-serif;
 	color: white;
 }
 
@@ -37,7 +38,7 @@
 }
 
 .MuiOutlinedInput-notchedOutline {
-	border-color: var(--pri-clr) !important;
+	border-color: white !important;
 }
 .MuiFormLabel-root {
 	color: white !important;
@@ -58,10 +59,10 @@
 }
 
 .login-btn {
-	font-family: "Bona Nova", serif;
+	font-family: "Lato", serif;
 	border: none;
 	font-size: large;
-	background-color: black;
+	background-color: #036;
 	color: white;
 	cursor: pointer;
 	position: relative;
@@ -69,7 +70,7 @@
 }
 
 .login-btn:hover {
-	color: var(--pri-clr);
+	color: orange;
 }
 
 #nav-check {

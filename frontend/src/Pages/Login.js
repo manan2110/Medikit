@@ -25,7 +25,7 @@ export default function Login({ user, setUser }) {
 	return (
 		<div className="containerStyle">
 			<section>
-				<h2 className="login-title">MedGuide Login</h2>
+				<h2 className="login-title">Medikit Login</h2>
 				{user ? (
 					<div className="loggedin">
 						<h2>User Logged In</h2>
