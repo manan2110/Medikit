@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 import "../CSS/Navbar.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faFirstAid} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFirstAid } from "@fortawesome/free-solid-svg-icons";
+
 export default function Navbar({ items, cart, setCart, user, setUser }) {
+	const [options, setOptions] = useState(Object.values(items));
+
 	const handleLogout = () => {
 		localStorage.getItem("token") && localStorage.removeItem("token");
 		setUser(null);
@@ -18,18 +21,27 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 		setCart(cart);
 	};
 
+	const onSearchBarFocus = () => {
+		setOptions(Object.values(items));
+	};
+
 	return (
 		<div className="navbar">
 			<input type="checkbox" id="nav-check"></input>
 			<Link to="/" className="home-link">
 				<div className="logo">MEDIKIT</div>
-				<FontAwesomeIcon size='1x' color='white' icon={faFirstAid}></FontAwesomeIcon>
+				<FontAwesomeIcon
+					size="1x"
+					color="white"
+					icon={faFirstAid}
+				></FontAwesomeIcon>
 			</Link>
 			<Autocomplete
 				className="searchbar"
-				options={Object.values(items)}
+				options={options}
 				getOptionLabel={(item) => item.name}
 				onChange={onSearchBarChange}
+				onFocus={onSearchBarFocus}
 				renderInput={(params) => (
 					<TextField {...params} label="Search" variant="outlined" />
 				)}

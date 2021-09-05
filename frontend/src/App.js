@@ -83,8 +83,8 @@ export default function App() {
 						/>
 					</Route>
 				))}
-				<Route exact path='/'>
-					<LandingPage/>
+				<Route exact path="/">
+					<LandingPage />
 				</Route>
 			</Router>
 		</div>
