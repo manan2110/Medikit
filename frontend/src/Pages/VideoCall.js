@@ -8,6 +8,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard"
 import Peer from "simple-peer"
 import io from "socket.io-client"
 import "../CSS/Video.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone,faCopy} from '@fortawesome/free-solid-svg-icons'
 
 
 const socket = io.connect('http://localhost:5000')
@@ -94,16 +96,16 @@ function Video() {
     }
 
     return (
-        <>
-            <h1 style={{ textAlign: "center", color: '#fff' }}>MedGuide</h1>
+        <div class='videoCallHolder'>
+        
             <div className="container">
                 <div className="video-container">
                     <div className="video">
-                        {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
+                        {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "500px" }} />}
                     </div>
                     <div className="video">
                         {callAccepted && !callEnded ?
-                            <video playsInline ref={userVideo} autoPlay style={{ width: "300px" }} /> :
+                            <video playsInline ref={userVideo} autoPlay style={{ width: "500px" }} /> :
                             null}
                     </div>
                 </div>
@@ -117,8 +119,9 @@ function Video() {
                         style={{ marginBottom: "20px" }}
                     />
                     <CopyToClipboard text={me} style={{ marginBottom: "2rem" }}>
-                        <Button variant="contained" color="primary" startIcon={<AssignmentIcon fontSize="large" />}>
-                            Copy ID
+                        <Button variant="contained" class='copyBtn' >
+                            <FontAwesomeIcon icon={faCopy}></FontAwesomeIcon>
+                           <span> Copy ID</span>
                         </Button>
                     </CopyToClipboard>
 
@@ -136,7 +139,7 @@ function Video() {
                             </Button>
                         ) : (
                             <IconButton color="white" aria-label="call" onClick={() => callUser(idToCall)}>
-                                <PhoneIcon fontSize="large" />
+                               <FontAwesomeIcon color='white' icon={faPhone}></FontAwesomeIcon>
                             </IconButton>
                         )}
                         {idToCall}
@@ -153,7 +156,7 @@ function Video() {
                     ) : null}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

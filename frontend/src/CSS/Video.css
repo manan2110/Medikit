@@ -1,7 +1,10 @@
 .container {
     display: grid;
     grid-template-columns: 7fr 3fr;
-    padding-top: 150px;
+    padding-top: 100px;
+    background-color:#e6e6f7;
+    height:100vh;
+   
 }
 
 .myId {
@@ -14,14 +17,17 @@
     /* #e2e2e2, */
     /* #c9d6ff */
     /* ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-color: #8cd3ff;
+    background-color:#fff;
     /* background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
     padding: 2rem;
     display: grid;
+    height:400px;
     justify-content: center;
     align-content: center;
-    box-shadow: 10px 10px 15px;
-    border: 1px solid black;
+    box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+    -webkit-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+    -moz-box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);
+    
 }
 
 .call-button {
@@ -29,7 +35,8 @@
     margin-top: 2rem;
     border: 0.6px solid #000000;
     border-radius: 10px;
-    background-color: #3f51b5;
+    background-color: rgb(73, 153, 63);;
+    color:white
 }
 
 .video-container {
@@ -46,3 +53,18 @@
     text-align: center;
     color: #fff;
 }
+.copyBtn{
+    text-align: center;
+    margin-top: 2rem;
+    border: 0.6px solid #000000;
+    border-radius: 10px;
+    background-color: #036;
+    color:white;
+    padding:10px;
+}
+.myId input{
+    background-color:rgb(173, 173, 173) !important;
+    padding:12px !important;
+   border-radius:8px 8px 0px 0px !important;
+}
+

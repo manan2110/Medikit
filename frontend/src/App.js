@@ -7,7 +7,7 @@ import Cart from "./Pages/Cart";
 import Pharmacy from "./Pages/Pharmacy";
 import VideoCall from "./Pages/VideoCall";
 import Owner from "./Pages/Owner";
-
+import LandingPage from "./Pages/landingPage";
 export default function App() {
 	const [pharmacies, setPharmacies] = useState([]);
 	const [items, setItems] = useState({});
@@ -69,7 +69,7 @@ export default function App() {
 						/>
 					</Route>
 				))}
-				<Route exact path="/">
+				<Route exact path="/pharmacy">
 					<Home pharmacies={pharmacies} />
 				</Route>
 				<Route exact path="/video/" component={VideoCall} />
@@ -83,6 +83,9 @@ export default function App() {
 						/>
 					</Route>
 				))}
+				<Route exact path='/'>
+					<LandingPage/>
+				</Route>
 			</Router>
 		</div>
 	);

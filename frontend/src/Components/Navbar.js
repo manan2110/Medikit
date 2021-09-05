@@ -59,6 +59,10 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 						<Link to="/login">
 							<button className="login-btn">Log In</button>
 						</Link>
+						<Link to="pharmacy/C7U7PT/owner">
+							<button className="login-btn">My Pharmacy</button>
+						</Link>
+
 						<Link to="/video">
 							<button className="login-btn">
 								Consult Doctor
