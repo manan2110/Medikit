@@ -102,17 +102,17 @@ We learned from every challenged we faced.
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/manan2110">
-            <img src="https://avatars.githubusercontent.com/u/55996661?v=4" width="100;" alt="manan2110"/>
-            <br />
-            <sub><b>Manan Gyanchandani</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/Priyanka7011">
             <img src="https://avatars.githubusercontent.com/u/54627940?v=4" width="100;" alt="Priyanka7011"/>
             <br />
             <sub><b>Priyanka Kumari</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/manan2110">
+            <img src="https://avatars.githubusercontent.com/u/55996661?v=4" width="100;" alt="manan2110"/>
+            <br />
+            <sub><b>Manan Gyanchandani</b></sub>
         </a>
     </td>
     <td align="center">
