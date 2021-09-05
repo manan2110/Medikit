@@ -97,18 +97,20 @@ function Video() {
 
     return (
         <div class='videoCallHolder'>
-        
+          
             <div className="container">
+           
                 <div className="video-container">
                     <div className="video">
-                        {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "500px" }} />}
+                        {stream && <video playsInline muted ref={myVideo} autoPlay style={{ width: "350px" }} />}
                     </div>
                     <div className="video">
                         {callAccepted && !callEnded ?
-                            <video playsInline ref={userVideo} autoPlay style={{ width: "500px" }} /> :
+                            <video playsInline ref={userVideo} autoPlay style={{ width: "350px" }} /> :
                             null}
                     </div>
                 </div>
+                
                 <div className="myId">
                     <TextField
                         id="filled-basic"
@@ -134,7 +136,7 @@ function Video() {
                     />
                     <div className="call-button">
                         {callAccepted && !callEnded ? (
-                            <Button variant="contained" color="secondary" onClick={leaveCall}>
+                            <Button  variant="contained" color="secondary" onClick={leaveCall}>
                                 End Call
                             </Button>
                         ) : (
@@ -145,17 +147,20 @@ function Video() {
                         {idToCall}
                     </div>
                 </div>
+
                 <div>
                     {receivingCall && !callAccepted ? (
                         <div className="caller">
-                            <h1 >{name} is calling...</h1>
+                            <h3 style={{'color':'#036'}}>{name} is calling...</h3>
                             <Button variant="contained" color="primary" onClick={answerCall}>
                                 Answer
                             </Button>
                         </div>
                     ) : null}
                 </div>
+                
             </div>
+            
         </div>
     )
 }

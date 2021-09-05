@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 import "../CSS/Navbar.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faFirstAid} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFirstAid } from "@fortawesome/free-solid-svg-icons";
+
 export default function Navbar({ items, cart, setCart, user, setUser }) {
+	const [options, setOptions] = useState(Object.values(items));
+
 	const handleLogout = () => {
 		localStorage.getItem("token") && localStorage.removeItem("token");
 		setUser(null);
@@ -17,22 +20,30 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 		cart[item.pk] = 1;
 		setCart(cart);
 	};
-    useEffect(()=>{
+    
 
-	})
+	const onSearchBarFocus = () => {
+		setOptions(Object.values(items));
+	};
+
 	return (
 
 		<div className="navbar">
 			<input type="checkbox" id="nav-check"></input>
 			<Link to="/" className="home-link">
 				<div className="logo">MEDIKIT</div>
-				<FontAwesomeIcon size='1x' color='white' icon={faFirstAid}></FontAwesomeIcon>
+				<FontAwesomeIcon
+					size="1x"
+					color="white"
+					icon={faFirstAid}
+				></FontAwesomeIcon>
 			</Link>
 			<Autocomplete
 				className="searchbar"
-				options={Object.values(items)}
+				options={options}
 				getOptionLabel={(item) => item.name}
 				onChange={onSearchBarChange}
+				onFocus={onSearchBarFocus}
 				renderInput={(params) => (
 					<TextField {...params} label="Search" variant="outlined" />
 				)}
@@ -48,6 +59,9 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 						<div className="avatar">
 							<Avatar>A</Avatar>
 						</div>
+						<Link to="owner/C7U7PT/">
+							<button className="login-btn">My Pharmacy</button>
+						</Link>
 						<Link to="/video">
 							<button className="login-btn">
 								Consult Doctor
