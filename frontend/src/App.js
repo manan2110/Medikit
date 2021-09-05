@@ -74,7 +74,7 @@ export default function App() {
 				</Route>
 				<Route exact path="/video/" component={VideoCall} />
 				{pharmacies.map((pharmacy) => (
-					<Route exact path={`/pharmacy/${pharmacy.eLoc}/owner`}>
+					<Route exact path={`/owner/${pharmacy.eLoc}`}>
 						<Owner
 							pharmacy={pharmacy}
 							setPharmacies={setPharmacies}

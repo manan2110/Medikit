@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar, TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import { Link } from "react-router-dom";
@@ -17,8 +17,11 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 		cart[item.pk] = 1;
 		setCart(cart);
 	};
+    useEffect(()=>{
 
+	})
 	return (
+
 		<div className="navbar">
 			<input type="checkbox" id="nav-check"></input>
 			<Link to="/" className="home-link">
@@ -59,7 +62,7 @@ export default function Navbar({ items, cart, setCart, user, setUser }) {
 						<Link to="/login">
 							<button className="login-btn">Log In</button>
 						</Link>
-						<Link to="pharmacy/C7U7PT/owner">
+						<Link to="owner/C7U7PT/">
 							<button className="login-btn">My Pharmacy</button>
 						</Link>
 
