@@ -155,7 +155,6 @@ async def pharmacy_get_nearby(request: HttpRequest):
         for i in data1["nearby_pharmacies"]:
             items.extend(i["items"])
         items_json = items
-        print(items_json)
         random.shuffle(items_json)
         item_start_idx = 0
         item_skip = len(items_json) // len(nearby_pharmacies)
@@ -200,7 +199,6 @@ async def update(request: HttpRequest, pharmacy_eloc: str = None):
     try:
         if request.method == "GET":
             if pharmacy_eloc is not None:
-                print(pharmacypharmacy_get(request, pharmacy_eloc))
                 return await pharmacy_get(request, pharmacy_eloc)
             return default_json_response
             return await pharmacy_get_nearby(request)
